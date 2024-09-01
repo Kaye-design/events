@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-Arts 穿戴音樂節活動登記 </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        input[type=text], input[type=email], input[type=number] {
+            width: 100%;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>D-Arts 穿戴音樂節活動登記</h1>
+    <form id="registration-form">
+        <label for="name">姓名:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        
+        <label for="email">郵件:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        
+        <label for="phone">電話:</label>
+        <input type="number" id="phone" name="phone" placeholder="Enter your phone number" required>
+        
+        <button type="submit">立即登記</button>
+    </form>
+    
+    <script>
+        document.getElementById('registration-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Get the form data
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            
+            // Create an object with the form data
+            var formData = {
+                name: name,
+                email: email,
+                phone: phone
+            };
+            
+            // Convert the form data to a CSV string
+            var csvData = 'Name,Email,Phone\n' + name + ',' + email + ',' + phone;
+            
+            // Create a download link for the CSV file
+            var downloadLink = document.createElement('a');
+            downloadLink.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvData));
+            downloadLink.setAttribute('download', 'event_registrations.csv');
+            
+            // Append the download link to the document and click it
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            
+            // Reset the form
+            document.getElementById('registration-form').reset();
+            
+            alert('活動登記成功! 我們稍後將根據您提供的郵件及電話聯絡您。');
+        });
+    </script>
+</body>
+</html>
