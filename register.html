@@ -1,40 +1,59 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-Hans">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> D-Arts 穿戴音樂會 </title>
+    <title> D-Arts 音樂會活動登記</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
         .container {
-            max-width: 600px;
+            width: 80%;
             margin: auto;
+            overflow: hidden;
+            background: #fff;
             padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .form-group {
-            margin-bottom: 15px;
+        header {
+            text-align: center;
+            padding: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .event-info {
+            margin: 20px 0;
+        }
+        .event-info h3 {
+            margin-bottom: 10px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
         }
         label {
-            display: block;
-            margin-bottom: 5px;
+            margin: 10px 0 5px;
         }
-        input[type="text"], input[type="email"], input[type="tel"] {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
+        input, select {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
         button {
-            padding: 10px 15px;
+            padding: 10px;
             background-color: #28a745;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
         }
         button:hover {
@@ -45,51 +64,44 @@
 <body>
 
 <div class="container">
-    <h2>活動註冊</h2>
-    <p><strong>活動日期：</strong> 2025年1月18日 上午10時 - 12時 </p >
-    <p><strong>活動地點：</strong>香港紅館</p >
-    <p><strong>活動描述：</strong>促進聼障人士交流的慈善音樂會。</p >
+    <header>
+        <h1> D-Arts 音樂會活動登記 </h1>
+        < img src="your-image-url.jpg" alt="活動宣傳圖片">
+    </header>
 
-    <form id="registrationForm">
-        <div class="form-group">
-            <label for="name">姓名：</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-            <label for="email">郵件：</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="phone">聯絡電話：</label>
-            <input type="tel" id="phone" name="phone" required>
-        </div>
-        <button type="submit">登記</button>
+    <div class="event-info">
+        <h3>活動信息</h3>
+        <p>時間: 2025 年 1 月 18 日 </p >
+        <p>地點: 香港紅館 </p >
+        <p>截止報名日期: 2025 年 1 月 10 日</p >
+        <p>活動描述: 本活動旨在促進聼障人士交流的慈善音樂會。</p >
+    </div>
+
+    <form action="https://example.com/submit" method="POST">
+        <label for="lastname">姓氏:</label>
+        <input type="text" id="lastname" name="lastname" required>
+
+        <label for="title">稱呼:</label>
+        <select id="title" name="title" required>
+            <option value="Mr">先生</option>
+            <option value="Ms">小姐</option>
+        </select>
+
+        <label for="phone">聯絡電話:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="email">郵件:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="participants">參與人數:</label>
+        <input type="number" id="participants" name="participants" required>
+
+        <label for="organization">所屬機構:</label>
+        <input type="text" id="organization" name="organization" required>
+
+        <button type="submit">提交登記</button>
     </form>
 </div>
-
-<script>
-    document.getElementById('registrationForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        
-        const csvContent = `姓名,郵件,聯絡電話\n${name},${email},${phone}`;
-        const encodedUri = encodeURI("data:text/csv;charset=utf-8," + csvContent);
-        
-        const link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "registration.csv");
-        document.body.appendChild(link);
-        
-        link.click();
-        
-        document.body.removeChild(link);
-        
-        alert('已成功下載註冊信息。');
-    });
-</script>
 
 </body>
 </html>
